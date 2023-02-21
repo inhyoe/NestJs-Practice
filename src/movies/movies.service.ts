@@ -36,6 +36,6 @@ export class MoviesService {
 		const movie = this.getOne(id);
 		console.log(movie);
 		this.deleteOne(id);
-		this.movies.push({ ...movie, ...updateData });
+		this.movies.push({ ...movie, ...updateData }); // 현재 이 기능에서는 validation을 검사하는 기능이 없음! 수정해야함
 	}
 }
