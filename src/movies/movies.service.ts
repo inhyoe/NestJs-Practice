@@ -10,27 +10,19 @@ export class MoviesService {
 	}
 
 	getOne(id: string): Movie {
-		const movie = this.movies.find((movie) => movie.id === +id);
+		const movie = this.movies.find((movie) => movie.id === +id); 
 		if (!movie) {
 			throw new NotFoundException(`Movie with ID ${id} not found`);
 		}
 		return movie;
 	}
 
-	// deleteOne(id: string) {
-	// 	this.getOne(id); // 이 함수를 먼저 호출하기 때문에 값이 없어도 됨
-	// 	console.log(this.movies.filter((movie) => movie.id !== +id));
 
-	// 	this.movies.filter((movie) => movie.id !== +id);
-	// 	console.log(this.movies);
-	// 	// this.movies.filter((movie) => movie.id === +id);
-	// 	// return true;
-	// }
 	deleteOne(id: string) {
-		this.getOne(id);
+		this.getOne(id); //? 원래 비즈니스 로직을 다시 재사용해서 사용하는 방법도 나쁘지 않은 것 같음.
 		this.movies = this.movies.filter((movie) => movie.id !== +id);
 		console.log(this.movies);
-	}
+	} //! this.movies를 다시 재정의해주지 않아서 에러가 발생했었음
 
 	createMovie(movieData) {
 		this.movies.push({
@@ -38,7 +30,7 @@ export class MoviesService {
 			...movieData,
 		});
 		return this.movies;
-	}
+	}  //! return을 안해줘서 error가 발생했었음
 
 	update(id: string, updateData) {
 		const movie = this.getOne(id);
