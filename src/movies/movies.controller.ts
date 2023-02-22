@@ -8,7 +8,7 @@ import {
 	Post,
 	Query,
 } from '@nestjs/common';
-import { clearConfigCache } from 'prettier';
+
 import { MoviesService } from './movies.service';
 import { Movie } from './entites/Movie.entity';
 import { CreateMovieDto } from './dto/create-movie.dto';
@@ -17,7 +17,7 @@ import { UpdateMovieDto } from './dto/Update-movie.dto';
 @Controller('movies') // entry point
 export class MoviesController {
 	constructor(private readonly moivesService: MoviesService) {} // moviesService에 접근하는 방법 == this
-
+																					  // 지금 이 생성자를 사용할 수 있는 이유는 MoviesService라는 타입을 지정해줘서 가능
 	@Get()
 	getAll(): Movie[] {
 		return this.moivesService.getAll();
