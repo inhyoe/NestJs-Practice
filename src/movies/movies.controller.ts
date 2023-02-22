@@ -11,6 +11,7 @@ import {
 import { clearConfigCache } from 'prettier';
 import { MoviesService } from './movies.service';
 import { Movie } from './entites/Movie.entity';
+import { CreateMovieDto } from './dto/create-movie.dto';
 
 @Controller('movies') // entry point
 export class MoviesController {
@@ -30,29 +31,22 @@ export class MoviesController {
 	}
 
 	@Get('/:id')
-	getOne(@Param('id') id: string): Movie {
+	getOne(@Param('id') id: number): Movie {
 		return this.moivesService.getOne(id);
 	}
 
 	@Post()
-	create(@Body() movieData) {
+	create(@Body() movieData: CreateMovieDto) {
 		return this.moivesService.createMovie(movieData);
 	}
 
 	@Delete('/:id')
-	deleteMovie(@Param('id') id: string) {
+	deleteMovie(@Param('id') id: number) {
 		return this.moivesService.deleteOne(id);
 	}
 
-	// @Patch('/:movieId') //일부분의 리소스만 업데이트해줌
-	// patch(@Param('movieId') movieId: String, @Body() updateData) {
-	// 	return {
-	// 		updateData: movieId,
-	// 		...updateData,
-	// 	};
-	// }
 	@Patch('/:movieId') //일부분의 리소스만 업데이트해줌
-	patch(@Param('movieId') movieId: string, @Body() updateData) {
+	patch(@Param('movieId') movieId: number, @Body() updateData) {
 		return this.moivesService.update(movieId, updateData);
 	}
 }
