@@ -12,6 +12,7 @@ import { clearConfigCache } from 'prettier';
 import { MoviesService } from './movies.service';
 import { Movie } from './entites/Movie.entity';
 import { CreateMovieDto } from './dto/create-movie.dto';
+import { UpdateMovieDto } from './dto/Update-movie.dto';
 
 @Controller('movies') // entry point
 export class MoviesController {
@@ -46,7 +47,7 @@ export class MoviesController {
 	}
 
 	@Patch('/:movieId') //일부분의 리소스만 업데이트해줌
-	patch(@Param('movieId') movieId: number, @Body() updateData) {
+	patch(@Param('movieId') movieId: number, @Body() updateData: UpdateMovieDto) {
 		return this.moivesService.update(movieId, updateData);
 	}
 }
