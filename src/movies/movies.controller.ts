@@ -7,6 +7,8 @@ import {
 	Patch,
 	Post,
 	Query,
+	Req,
+	Res,
 } from '@nestjs/common';
 
 import { MoviesService } from './movies.service';
@@ -19,7 +21,8 @@ export class MoviesController {
 	constructor(private readonly moivesService: MoviesService) {} // moviesService에 접근하는 방법 == this
 																					  // 지금 이 생성자를 사용할 수 있는 이유는 MoviesService라는 타입을 지정해줘서 가능
 	@Get()
-	getAll(): Movie[] {
+	getAll(@Req() req, @Res() res): Movie[] { // @req객체나 res객체를 직접적으로 사용하는건 옳지 않음
+															// https://docs.nestjs.com/techniques/performance
 		return this.moivesService.getAll();
 	}
 
