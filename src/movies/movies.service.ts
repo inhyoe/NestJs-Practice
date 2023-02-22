@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Movie } from './entites/Movie.entity';
 import { CreateMovieDto } from './dto/create-movie.dto';
+import { UpdateMovieDto } from './dto/Update-movie.dto';
 
 @Injectable()
 export class MoviesService {
@@ -32,7 +33,7 @@ export class MoviesService {
 		return this.movies;
 	} //! return을 안해줘서 error가 발생했었음
 
-	update(id: number, updateData) {
+	update(id: number, updateData: UpdateMovieDto) {
 		const movie = this.getOne(id);
 		console.log(movie);
 		this.deleteOne(id);
