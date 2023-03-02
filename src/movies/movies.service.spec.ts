@@ -51,4 +51,28 @@ describe('MoviesService', () => {
 			}
 		});
 	});
+	describe('deletOne', () => {
+		it('deletes a movie', () => {
+			service.createMovie({
+				// 먼저 createMoive로 Movie 객체를 생성해줘야함.
+				title: 'Test Movie',
+				geners: ['test'],
+				year: 2000,
+			});
+			const allMovies = service.getAll().length;
+			service.deleteOne(1);
+			const afterDelete = service.getAll().length;
+
+			expect(afterDelete).toBeLessThan(allMovies);
+		});
+
+		it('should be return a 404', () => {
+			try {
+				service.deleteOne(22);
+			} catch (e) {
+				expect(e).toBeInstanceOf(NotFoundException);
+				expect(e.message).toEqual(`Movie with ID 22 not found`);
+			}
+		});
+	});
 });
