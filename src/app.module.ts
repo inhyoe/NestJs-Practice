@@ -4,13 +4,16 @@ import { AppController } from './app/app.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeORMConfig } from './configs/typeorm.config';
 import { BoardsModule } from './boards/boards.module';
+import { GoogleUserModule } from './google_user/google_user.module';
+import { CreatePictureModule } from './create_picture/create_picture.module';
 
 @Module({
 	imports: [
 		BoardsModule,
 		MoviesModule,
 		TypeOrmModule.forRoot(typeORMConfig),
-		BoardsModule,
+		GoogleUserModule,
+		CreatePictureModule,
 	],
 	controllers: [AppController],
 	providers: [],
