@@ -10,7 +10,6 @@ export class GoggleUserRepository extends Repository<GoogleUser> {
 
 	async createGoogleUser(createGoogleUserDto: CreateGoogleUserDto) {
 		const { email, nick_name } = createGoogleUserDto;
-		console.log(this);
 		const googleUser = this.create({
 			email,
 			nick_name,

@@ -12,7 +12,7 @@ export class GoogleUser extends BaseEntity {
 	@PrimaryColumn()
 	email: string;
 
-	@Column()
+	@Column({ nullable: true })
 	nick_name: string;
 
 	@CreateDateColumn()
