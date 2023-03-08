@@ -5,10 +5,10 @@ export const typeORMConfig: TypeOrmModuleOptions = {
 
 	type: 'postgres',
 	host: 'localhost',
-	port: 5432,
-	username: 'emchang',
-	password: 'postgres',
-	database: 'picasso',
+	port: Number(process.env.DB_PORT),
+	username: process.env.USER_NAME,
+	password: process.env.PASSWORD,
+	database: process.env.DB_DATABASE,
 	entities: [__dirname + '/../**/*.entity.{js,ts}'],
 	synchronize: true,
 };
