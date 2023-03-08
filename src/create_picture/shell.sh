@@ -1,35 +1,29 @@
-#!/bin/zsh
+#!/bin/bash
 
-cd /Users/changhoon/PycharmProjects/stable_get_setting/ml-stable-diffusion
+cd /home/emchang/PycharmProjects/stableDiffusionV2/stablediffusion
 
 # shellcheck disable=SC2030
-VAR1=$1 #this is User
-VAR2=$2 #this is suggested word
-VAR3=${VAR2// /_}."93.final.png"
 
-#echo $VAR3
-#abc+".93.final.png"
-#echo str
-echo $VAR1
-echo $VAR3
-#echo $1
-#echo $VAR3"93.final.png"
+User=$1 #this is User
+suggested=$2 #this is suggested word
+edited_suggested=${suggested// /_}."93.final.png"
 
-#echo "A_digital_illustration_of_a_steampunk_library_with_clockwork_machines,_4k,_.93.final" | awk '{print length($0)}'
+echo $User
+echo $edited_suggested
 
-    swift run StableDiffusionSample --resource-path models/coreml-stable-diffusion-v1-4_original_compiled --compute-units all "$2"
+python scripts/txt2img.py --prompt "$2" --ckpt ./v2-1_768-ema-pruned.ckpt --config configs/stable-diffusion/v2-inference-v.yaml --H 768 --W 768 --outdir outputs/samples/$1 
 
-if [ ! -d /Users/changhoon/Desktop/Picasso_Project_AfterJanuary/PicassoBackend/public/images/$1 ];then
-    mkdir /Users/changhoon/Desktop/Picasso_Project_AfterJanuary/PicassoBackend/public/images/$1
-    cp /Users/changhoon/PycharmProjects/stable_get_setting/ml-stable-diffusion/$VAR3 /Users/changhoon/Desktop/Picasso_Project_AfterJanuary/PicassoBackend/public/images/$1/$VAR3
-else
-    cp /Users/changhoon/PycharmProjects/stable_get_setting/ml-stable-diffusion/$VAR3 /Users/changhoon/Desktop/Picasso_Project_AfterJanuary/PicassoBackend/public/images/$1/$VAR3
-fi
+# if [ ! -d /Users/changhoon/Desktop/Picasso_Project_AfterJanuary/PicassoBackend/public/images/$1 ];then
+#     mkdir /Users/changhoon/Desktop/Picasso_Project_AfterJanuary/PicassoBackend/public/images/$1
+#     cp /Users/changhoon/PycharmProjects/stable_get_setting/ml-stable-diffusion/$edited_suggested /Users/changhoon/Desktop/Picasso_Project_AfterJanuary/PicassoBackend/public/images/$1/$edited_suggested
+# else
+#     cp /Users/changhoon/PycharmProjects/stable_get_setting/ml-stable-diffusion/$edited_suggested /Users/changhoon/Desktop/Picasso_Project_AfterJanuary/PicassoBackend/public/images/$1/$edited_suggested
+# fi
 
-#cp /Users/changhoon/PycharmProjects/stable_get_setting/ml-stable-diffusion/$VAR3 /Users/changhoon/Desktop/Picasso_Project_AfterJanuary/PicassoBackend/resources/Data/$VAR1
+# #cp /Users/changhoon/PycharmProjects/stable_get_setting/ml-stable-diffusion/$edited_suggested /Users/changhoon/Desktop/Picasso_Project_AfterJanuary/PicassoBackend/resources/Data/$User
 
 
-#cp /Users/changhoon/PycharmProjects/stable_get_setting/ml-stable-diffusion/$VAR3 /Users/changhoon/Desktop/Picasso_Project_AfterJanuary/PicassoBackend/resources/Data/
+# #cp /Users/changhoon/PycharmProjects/stable_get_setting/ml-stable-diffusion/$edited_suggested /Users/changhoon/Desktop/Picasso_Project_AfterJanuary/PicassoBackend/resources/Data/
 
 
 
