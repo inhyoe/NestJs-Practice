@@ -6,6 +6,9 @@ import { typeORMConfig } from './configs/typeorm.config';
 import { BoardsModule } from './boards/boards.module';
 import { GoogleUserModule } from './google_user/google_user.module';
 import { CreatePictureModule } from './create_picture/create_picture.module';
+import { SummarizeModule } from './summarize/summarize.module';
+import { ConfigModule } from '@nestjs/config';
+import { WeatherModule } from './weather/weather.module';
 
 @Module({
 	imports: [
@@ -14,6 +17,9 @@ import { CreatePictureModule } from './create_picture/create_picture.module';
 		TypeOrmModule.forRoot(typeORMConfig),
 		GoogleUserModule,
 		CreatePictureModule,
+		SummarizeModule,
+		ConfigModule.forRoot(),
+		WeatherModule, // dotenv를 사용하기 위한 import
 	],
 	controllers: [AppController],
 	providers: [],
