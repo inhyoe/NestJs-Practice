@@ -12,6 +12,9 @@ import { WeatherModule } from './weather/weather.module';
 
 @Module({
 	imports: [
+		ConfigModule.forRoot({
+			isGlobal: true,
+		}),
 		BoardsModule,
 		MoviesModule,
 		TypeOrmModule.forRoot(typeORMConfig),

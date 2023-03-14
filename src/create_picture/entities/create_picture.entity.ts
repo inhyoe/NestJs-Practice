@@ -21,6 +21,9 @@ export class create_picture extends BaseEntity {
 	@Column()
 	user_name: string;
 
+	@Column({ nullable: false })
+	picture_url: string;
+
 	@CreateDateColumn()
 	createdAt: Date;
 
